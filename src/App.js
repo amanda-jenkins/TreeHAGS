@@ -16,38 +16,56 @@ function App() {
 
   const generateNewQuestion = async () => {
     if (!countries || countries.length === 0) {
-      console.error("Country list is empty or not loaded.");
-      setQuestion("Error loading country list.");
-      setCorrectCountry("Error");
-      return;
+        console.error("Country list is empty or not loaded.");
+        setQuestion("Error loading country list.");
+        setCorrectCountry("Error");
+        return;
     }
 
+    console.log(countries) // FOR DEBUGGING
+    
     const randomIndex = Math.floor(Math.random() * countries.length);
-    const randomCountry = countries[randomIndex] || "Unknown";
+    const randomCountry = countries[randomIndex];
+
+    console.log("Randomly selected country:", randomCountry);
+
+    if (!randomCountry) {
+        setQuestion("Failed to select a country.");
+        setCorrectCountry("Unknown");
+        return;
+    }
+
     const countryCode = getCountryCode(randomCountry);
+    console.log("Mapped country code:", countryCode);
+
     if (!countryCode) {
-      setQuestion("Failed to fetch country data.");
-      setCorrectCountry("Unknown");
-      return;
+        setQuestion("Failed to fetch country data.");
+        setCorrectCountry("Unknown");
+        return;
     }
 
     const emissionsData = await fetchEmissionsData(countryCode);
+    console.log("Fetched emissions data:", emissionsData);
+
     if (!emissionsData || emissionsData.length === 0) {
-      setQuestion("No emissions data available for this country.");
-      setCorrectCountry(randomCountry);
-      return;
+        setQuestion("No emissions data available for this country.");
+        setCorrectCountry(randomCountry);
+        return;
     }
 
     const randomSector = emissionsData[Math.floor(Math.random() * emissionsData.length)];
+    console.log("Random sector chosen:", randomSector);
+
     if (!randomSector) {
-      setQuestion("No sector data available.");
-      setCorrectCountry(randomCountry);
-      return;
+        setQuestion("No sector data available.");
+        setCorrectCountry(randomCountry);
+        return;
     }
 
     setCorrectCountry(randomCountry);
     setQuestion(`Which country emitted ${randomSector.Emissions.toLocaleString()} metric tons of ${randomSector.gas} from the ${randomSector.sector.replace(/-/g, " ")} sector?`);
-  };
+};
+
 
   const handleGuess = () => {
     if (selectedCountry.toLowerCase() === correctCountry.toLowerCase()) {
