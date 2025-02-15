@@ -288,4 +288,3 @@ const getCountryCode = (countryName) => {
 };
 
 module.exports = { fetchEmissionsData, getCountryCode };
-module.exports = { fetchEmissionsData, getCountryCode };
