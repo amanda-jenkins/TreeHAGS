@@ -1,38 +1,232 @@
-.App {
+/* 🌍 General Layout */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #e8f5e9;
+  color: #1b5e20;
   text-align: center;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* 🔹 Main Container */
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  min-height: 100vh;
+  padding: 20px;
+  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+}
+
+/* 🌿 Header */
+.header {
+  background: #2e7d32;
   color: white;
+  padding: 20px;
+  width: 100%;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
 }
 
-.App-link {
-  color: #61dafb;
+.header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M40 0c-22.091 0-40 17.909-40 40s17.909 40 40 40 40-17.909 40-40-17.909-40-40-40zm0 70c-16.569 0-30-13.431-30-30 0-16.569 13.431-30 30-30 16.569 0 30 13.431 30 30 0 16.569-13.431 30-30 30z'/%3E%3Cpath d='M50 30c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10 10 4.477 10 10z'/%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.2;
+  z-index: 0;
 }
 
-@keyframes App-logo-spin {
+.header-content {
+  position: relative;
+  z-index: 1;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 32px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header p {
+  margin-top: 10px;
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+/* 🎮 Game Card */
+.game-container {
+  margin-top: 30px;
+  perspective: 1000px;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  width: 350px;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out, float 3s ease-in-out infinite;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px) rotateX(5deg);
+}
+
+.card h2 {
+  color: #2e7d32;
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+/* 🔠 Input Box */
+.input-box {
+  width: 90%;
+  padding: 12px;
+  margin: 15px 0;
+  border-radius: 25px;
+  border: 2px solid #81c784;
+  font-size: 16px;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.input-box:focus {
+  outline: none;
+  border-color: #2e7d32;
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.2);
+}
+
+/* 🎯 Guess Button */
+.guess-btn {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.guess-btn:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.guess-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 🔠 Dropdown Menu */
+.country-select {
+  width: 90%;
+  padding: 12px;
+  margin: 15px 0;
+  border-radius: 25px;
+  border: 2px solid #81c784;
+  font-size: 16px;
+  text-align-last: center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px top 50%;
+  background-size: 12px auto;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.country-select:focus {
+  outline: none;
+  border-color: #2e7d32;
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.2);
+}
+
+/* 📉 Footer */
+.footer {
+  margin-top: 40px;
+  font-size: 16px;
+  color: #1b5e20;
+  font-weight: 500;
+}
+
+/* 🔄 Animations */
+@keyframes fadeIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(-20px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* 🍃 Leaf Animation */
+.leaf {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #81c784;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  animation: fall 10s linear infinite;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 600px) {
+  .card {
+    width: 90%;
+  }
+
+  .header h1 {
+    font-size: 24px;
+  }
+
+  .header p {
+    font-size: 16px;
+  }
+}
+
