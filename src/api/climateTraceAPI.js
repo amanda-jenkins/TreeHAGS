@@ -278,5 +278,14 @@ const countryCodeMap = {
   "Zimbabwe": "ZWE"
 };
 
-  
+/**
+ * Get the country code from the hardcoded mapping.
+ * @param {string} countryName - The country name.
+ * @returns {string|null} - The corresponding 3-letter country code or null.
+ */
+const getCountryCode = (countryName) => {
+  return countryCodeMap[countryName] || null;
+};
+
+module.exports = { fetchEmissionsData, getCountryCode };
 module.exports = { fetchEmissionsData, getCountryCode };
