@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import { fetchEmissionsData, getCountryCode } from "./api/climateTraceAPI";
+import { fetchEmissionsData, getCountryCode, fetchCountryHint } from "./api/climateTraceAPI";
 import { countries } from "./data/countries";
 const sortedCountries = [...countries].sort();
 
@@ -10,6 +10,7 @@ function App() {
   const [message, setMessage] = useState("");
   const [score, setScore] = useState(0);
   const [question, setQuestion] = useState("Fetching question...");
+  const [hint, setHint] = useState("");
   const [correctCountry, setCorrectCountry] = useState("Loading...");
 
   useEffect(() => {
@@ -47,7 +48,7 @@ function App() {
     const countryEmissions = emissionsData[0];
     console.log("Country emissions data:", countryEmissions);
   
-    // Select a random gas type (CO2, CH4, N2O)
+    // Select a random gas type (CO2, CH4, N2O) from Climate Trace API
     const gases = Object.keys(countryEmissions.emissions || {});
     if (gases.length === 0) {
       console.warn(`No valid gas emissions data for ${randomCountry}.`);
@@ -81,6 +82,11 @@ function App() {
     }
   };
 
+  const handleHint = async () => {
+    const hintResponse = await fetchCountryHint(correctCountry);
+    setHint(hintResponse);
+  };
+
   return (
     <div className="container">
       <header className="header">
@@ -105,6 +111,8 @@ function App() {
             ))}
           </select>
           <button className="guess-btn" onClick={handleGuess}>Submit Guess</button>
+          <button className="hint-btn" onClick={handleHint}>Get a Hint</button>
+          {hint && <p className="hint">Hint: {hint}</p>}
           {message && <p className="message">{message}</p>}
           <p>Score: {score}</p>
           <p>Correct Answer: {correctCountry}</p>

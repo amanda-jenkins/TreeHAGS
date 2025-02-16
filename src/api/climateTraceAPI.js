@@ -1,8 +1,14 @@
 import axios from 'axios';
-console.log("Axios in climateTraceAPI:", axios); 
+import OpenAI from "openai";
 
 const BASE_URL = 'https://api.climatetrace.org/v6';
 
+const openai = new OpenAI({
+    apiKey: process.env.REACT_APP_OPENAI_API_KEY,
+    dangerouslyAllowBrowser: true, 
+  });
+
+  
 /**
  * Fetch emissions data from Climate Trace API.
  * @param {string} country      - 3-letter country code (ISO 3166-1 alpha-3).
@@ -290,3 +296,31 @@ const countryCodeMap = {
 export const getCountryCode = (countryName) => {
     return countryCodeMap[countryName] || null;
   };
+
+/**
+ * Fetch a hint for the randomly selected country using OpenAI.
+ * @param {string} countryName  - The country name.
+ * @returns {Promise<string>}   - A hint describing the country.
+ */
+export const fetchCountryHint = async (countryName) => {
+    try {
+      console.log(`Fetching hint for: ${countryName}`);
+  
+      const response = await openai.chat.completions.create({
+        model: "gpt-4o",
+        messages: [
+          { role: "system", content: "You are an AI assistant providing hints about countries without revealing their names." },
+          { role: "user", content: `Give me a unique but non-obvious fact about ${countryName}, without directly naming it.` },
+        ],
+        max_tokens: 50,
+      });
+  
+      const hint = response.choices[0]?.message?.content?.trim();
+      console.log("Received hint:", hint);
+      return hint || "Hint unavailable.";
+    } catch (error) {
+      console.error("Error fetching country hint:", error);
+      return "Hint unavailable.";
+    }
+  };
+  
