@@ -13,16 +13,31 @@ const BASE_URL = 'https://api.climatetrace.org/v6';
  */
 export const fetchEmissionsData = async (country, sector = '', limit = 100) => {
     try {
-        const params = { countries: country, limit };
-        if (sector) params.sectors = sector;
-
-        const response = await axios.get(`${BASE_URL}/country/emissions`, { params });
-        return response.data;
+      const params = { countries: country, limit };
+      if (sector) params.sectors = sector;
+  
+      const response = await axios.get(`${BASE_URL}/country/emissions`, { params });
+  
+      console.log("API Response for", country, ":", response.data);
+  
+      return response.data;
     } catch (error) {
-        console.error('Error fetching emissions data:', error);
-        return null;
+      console.error('Error fetching emissions data:', error);
+      return null;
     }
-    };
+  };  
+// export const fetchEmissionsData = async (country, sector = '', limit = 100) => {
+//     try {
+//         const params = { countries: country, limit };
+//         if (sector) params.sectors = sector;
+
+//         const response = await axios.get(`${BASE_URL}/country/emissions`, { params });
+//         return response.data;
+//     } catch (error) {
+//         console.error('Error fetching emissions data:', error);
+//         return null;
+//     }
+//     };
   
 const countryCodeMap = {
   "Netherlands Antilles": "ANT",

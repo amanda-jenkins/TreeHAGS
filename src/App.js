@@ -35,29 +35,41 @@ function App() {
     }
   
     const emissionsData = await fetchEmissionsData(countryCode);
-    console.log("Fetched emissions data:", emissionsData); // ✅ Debugging data
+    console.log(`Fetched emissions data for ${randomCountry} (${countryCode}):`, emissionsData);
   
     if (!emissionsData || emissionsData.length === 0) {
+      console.warn(`No emissions data available for ${randomCountry} (${countryCode}).`);
       setQuestion("No emissions data available for this country.");
       setCorrectCountry(randomCountry);
       return;
     }
   
-    const randomSector = emissionsData[Math.floor(Math.random() * emissionsData.length)];
-    console.log("Random sector data:", randomSector); // ✅ Debugging sector
+    const countryEmissions = emissionsData[0]; // Assuming API returns an array
+    console.log("Country emissions data:", countryEmissions);
   
-    // ✅ Check if randomSector and its properties exist before using them
-    if (!randomSector || !randomSector.Emissions || !randomSector.gas || !randomSector.sector) {
+    // Select a random gas type (CO2, CH4, N2O)
+    const gases = Object.keys(countryEmissions.emissions || {});
+    if (gases.length === 0) {
+      console.warn(`No valid gas emissions data for ${randomCountry}.`);
+      setQuestion("No valid emissions data available.");
+      setCorrectCountry(randomCountry);
+      return;
+    }
+  
+    const randomGas = gases[Math.floor(Math.random() * gases.length)];
+    const emissionValue = countryEmissions.emissions[randomGas];
+  
+    if (!emissionValue) {
+      console.warn(`No emissions value for ${randomGas} in ${randomCountry}.`);
       setQuestion("No valid emissions data available.");
       setCorrectCountry(randomCountry);
       return;
     }
   
     setCorrectCountry(randomCountry);
-    setQuestion(`Which country emitted ${randomSector.Emissions.toLocaleString()} metric tons of ${randomSector.gas} from the ${randomSector.sector.replace(/-/g, " ")} sector?`);
+    setQuestion(`Which country emitted ${emissionValue.toLocaleString()} metric tons of ${randomGas.toUpperCase()}?`);
   };
   
-
 
   const handleGuess = () => {
     if (selectedCountry.toLowerCase() === correctCountry.toLowerCase()) {
