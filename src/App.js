@@ -83,6 +83,7 @@ function App() {
   };
 
   const handleHint = async () => {
+    console.log(correctCountry);
     const hintResponse = await fetchCountryHint(correctCountry);
     setHint(hintResponse);
   };
@@ -112,10 +113,12 @@ function App() {
           </select>
           <button className="guess-btn" onClick={handleGuess}>Submit Guess</button>
           <button className="hint-btn" onClick={handleHint}>Get a Hint</button>
+
           {hint && <p className="hint">Hint: {hint}</p>}
           {message && <p className="message">{message}</p>}
-          <p>Score: {score}</p>
-          <p>Correct Answer: {correctCountry}</p>
+          <p className="score">Score: {score}</p>
+
+          {/* <p>Correct Answer: {correctCountry}</p> */}
         </div>
       </div>
 

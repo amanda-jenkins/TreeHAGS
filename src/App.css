@@ -132,6 +132,36 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.hint {
+  font-size: 13px; /* Smaller than normal text */
+  color: #555; /* Slightly muted color */
+  margin-top: 5px;
+  padding: 25px;
+}
+
+
+.hint-btn {
+  width: 70%; /* Smaller than Submit Guess */
+  margin-top: 8px;
+  padding: 8px 15px; /* Smaller padding */
+  border-radius: 20px;
+  font-size: 16px; /* Smaller font */
+  font-weight: bold;
+  background-color: #ffa726; /* Distinct but not overpowering */
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.hint-btn:hover {
+  background-color: #fb8c00;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 7px rgba(0, 0, 0, 0.15);
+}
+
+
 /* 🔠 Dropdown Menu */
 .country-select {
   width: 90%;
@@ -166,7 +196,7 @@ body {
   font-weight: 500;
 }
 
-/* 🔄 Animations */
+/* Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -188,7 +218,18 @@ body {
   }
 }
 
-/* 🍃 Leaf Animation */
+.score {
+  display: inline-block; /* Keeps it compact */
+  padding: 12px; /* Adds space inside */
+  border-radius: 10px; /* Soft rounded edges */
+  background-color: #e8f5e9; /* Light green to match theme */
+  font-weight: bold;
+  font-size: 16px;
+  color: #2e7d32; /* Dark green for visibility */
+  margin-top: 2px; /* Space from elements above */
+}
+
+/* Leaf Animation */
 .leaf {
   position: absolute;
   width: 20px;
