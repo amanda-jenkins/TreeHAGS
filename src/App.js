@@ -28,6 +28,7 @@ function App() {
     const randomIndex = Math.floor(Math.random() * countries.length);
     const randomCountry = countries[randomIndex] || "Unknown";
     const countryCode = getCountryCode(randomCountry);
+    console.log(randomCountry)
   
     if (!countryCode) {
       setQuestion("Failed to fetch country data.");
@@ -83,7 +84,6 @@ function App() {
   };
 
   const handleHint = async () => {
-    console.log(correctCountry);
     const hintResponse = await fetchCountryHint(correctCountry);
     setHint(hintResponse);
   };
@@ -112,11 +112,16 @@ function App() {
             ))}
           </select>
           <button className="guess-btn" onClick={handleGuess}>Submit Guess</button>
-          <button className="hint-btn" onClick={handleHint}>Get a Hint</button>
+          {/* <button className="hint-btn" onClick={handleHint}>Get a Hint</button> */}
 
           {hint && <p className="hint">Hint: {hint}</p>}
           {message && <p className="message">{message}</p>}
-          <p className="score">Score: {score}</p>
+          {/* <p className="score">Score: {score}</p> */}
+          <div className="hint-container">
+            <button className="hint-btn" onClick={handleHint}>Get a Hint</button>
+          </div>
+
+          <p className="score-text">Score: {score}</p>
 
           {/* <p>Correct Answer: {correctCountry}</p> */}
         </div>

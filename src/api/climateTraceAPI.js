@@ -12,7 +12,6 @@ const openai = new OpenAI({
 /**
  * Fetch emissions data from Climate Trace API.
  * @param {string} country      - 3-letter country code (ISO 3166-1 alpha-3).
- * @param {number} year         - Year for emissions data.
  * @param {string} sector       - Filter by sector (e.g., 'power', 'transportation').
  * @param {number} limit        - Number of results.
  * @returns {Promise<Object>}   - Emissions data.
