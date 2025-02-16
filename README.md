@@ -1,70 +1,39 @@
 # Getting Started with Create React App
 
+### To run: npm install and then npm start
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Inspiration
 
-### `npm test`
+GHGuessr is a single-player game with the mission of building climate awareness, especially in the realm of greenhouse gas (GHG) emissions and other air pollutants. Players gain points when they answer correctly. There is a “hint” button that provides additional facts about the country, so that players can have some more information about the country they are trying to guess. Few people realize the magnitude of the amount of emissions that are released worldwide, as well as how many types of GHGs there are. This game was designed with the idea of educating others into becoming better aware of the state of our planet.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Our idea was inspired by one of Stanford Ecopreneurship’s Sustainability Challenges, specifically Challenge #4, “Tradle, but for emissions”. Tradle is a game that educates players about the types of products that countries export, by providing some data on exported products and asking the players to guess which country the information comes from.  Our game has a similar concept, where we provide data on GHG emissions and players will guess which country the data comes from. In addition, the title of our game is inspired by the game GeoGuessr, which is a global geography game; this game has a similar aspect with the idea of guessing countries from around the world.
 
-### `npm run build`
+# Prototyping and Iterative Process
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Through using Perplexity to understand the intersection between sustainability challenges and user needs, we saw that the significant knowledge gaps in understanding national greenhouse gas emissions hinder effective climate change mitigation efforts. We assume that data-driven learning, such as in the form of this game, is effective. We aim for GHGGuessr to help with the public better understand the magnitude of climate issues, and that the gamification of facts will incentivize people to engage with emissions data more.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+We first used reviewed common climate-related data visualizations and tools to understand our users' needs. Afterward, we created a mock front-page using Vercel's v0. Subsequently, our team met with Jonathan Lipman, leader of Strategic Initiatives at Speed and Scale. We discussed our idea for the project, and he provided ideas on what data to utilize from the API from the data source Climate Trace [Link: https://climatetrace.org/]. From these conversations, we were able to gather ideas on how to best gamify our ideas.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+We then tested the following hypotheses:
 
-### `npm run eject`
+1. A minimal viable version can be quickly deployed and iterated on while still allowing core functionality to be tested. We successfully deployed Vercel's v0, allowing for early feedback and further development without waiting for a complete product.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. API integration and emissions data retrieval will work as expected without major issues. We implemented Climate Trace API integration and attempted to retrieve emissions data for different countries. While there were issues of misformatted data, which required debugging, data transformation, and improved error handling, we were able to make the API work correctly for our needs.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. Users enjoy games to learn more about global issues. We asked other surrounding TreeHackers in Packard to determine whether or not users preferred learning through bombardment of information and graphics versus a simple game that conveys impact. We found that 60% of our respondents (n = 10) preferred the latter.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Technical Implementation
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+GHGGuessr integrates a React-based frontend with a backend that retrieves and processes climate data from ClimateTrace API. The frontend, developed using React.js, presents a quiz-style interface where users guess countries based on their greenhouse gas emissions. It dynamically fetches country-specific emissions data from the Climate Trace API, using JavaScript functions for data retrieval and state management via React hooks. OpenAI was utilized to generate text for the hint, to further inform users about the countries. The UI is styled with CSS, ensuring a responsive and engaging user experience. The game logic includes randomized question generation, answer validation, and hint retrieval, maintaining an interactive flow. The backend API calls are optimized to fetch and process emissions data efficiently, ensuring smooth and real-time gameplay. Error handling mechanisms prevent disruptions when data is unavailable, and state updates dynamically reflect the quiz progress.
 
-## Learn More
+## Challenges 
+Our team came into TreeHacks with varying skill levels and backgrounds, but we shared a common goal: to build something impactful. One of our members learned how to use Github for time, and another person interacted with an API for the first time. Ultimately, we learned so much about full stack development in a collaborative setting, and how to integrate novel AI products into our solutions. Despite time constraints and debugging hurdles, our collaboration and adaptability helped us create GHGuessr!
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Accomplishments, Teachings, and Next Steps
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+One of the biggest shifts for us was moving from a broad concept of an emissions-based game to a more focused and structured approach, where we present emissions data for a randomly selected country and ask users to guess which country it belongs to. Instead of overcomplicating the game with additional layers of data visualization early on, we honed in on making the API integration and core game functionality actually work before expanding features. In the future, we may wish to use a D3 wrapper to help us create a new Tree Map for the game, which will help users visualize the data more appropriately. Through the various AI-related tools that were available to us, we learned that deployment and iteration mattered more than perfection. By quickly deploying an early version (V0) on Vercel, we were able to iterate based on real feedback rather than guessing what might work. This approach helped us fix core issues early, rather than realizing them too late in development.
