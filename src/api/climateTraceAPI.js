@@ -1,4 +1,5 @@
-const axios = require('axios');
+import axios from 'axios';
+console.log("Axios in climateTraceAPI:", axios); // ✅ Debugging Axios import
 
 const BASE_URL = 'https://api.climatetrace.org/v6';
 
@@ -10,18 +11,18 @@ const BASE_URL = 'https://api.climatetrace.org/v6';
  * @param {number} limit        - Number of results.
  * @returns {Promise<Object>}   - Emissions data.
  */
-const fetchEmissionsData = async (country, sector = '', limit = 100) => {
+export const fetchEmissionsData = async (country, sector = '', limit = 100) => {
     try {
-      const params = { countries: country, limit };
-      if (sector) params.sectors = sector;  // Only add sector if provided
-  
-      const response = await axios.get(`${BASE_URL}/country/emissions`, { params });
-      return response.data;
+        const params = { countries: country, limit };
+        if (sector) params.sectors = sector;
+
+        const response = await axios.get(`${BASE_URL}/country/emissions`, { params });
+        return response.data;
     } catch (error) {
-      console.error('Error fetching emissions data:', error);
-      return null;
+        console.error('Error fetching emissions data:', error);
+        return null;
     }
-  };
+    };
   
 const countryCodeMap = {
   "Netherlands Antilles": "ANT",
@@ -283,8 +284,8 @@ const countryCodeMap = {
  * @param {string} countryName - The country name.
  * @returns {string|null} - The corresponding 3-letter country code or null.
  */
-const getCountryCode = (countryName) => {
-  return countryCodeMap[countryName] || null;
-};
+export const getCountryCode = (countryName) => {
+    return countryCodeMap[countryName] || null;
+  };
 
-module.exports = { fetchEmissionsData, getCountryCode };
+// module.exports = { fetchEmissionsData, getCountryCode };
