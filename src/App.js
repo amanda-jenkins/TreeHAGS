@@ -91,7 +91,7 @@ function App() {
     <div className="container">
       <header className="header">
         <div className="header-content">
-          <h1>GHGdle - Guess the Country by Emissions</h1>
+          <h1> GHGuessr - Guess the Country by Emissions</h1>
           <p>Test your knowledge! Can you guess the country based on its greenhouse gas emissions?</p>
         </div>
       </header>
