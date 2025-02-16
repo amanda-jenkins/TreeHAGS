@@ -1,4 +1,3 @@
-# Getting Started with Create React App
 
 ### To run: npm install and then npm start
 
