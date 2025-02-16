@@ -1,5 +1,5 @@
 import axios from 'axios';
-console.log("Axios in climateTraceAPI:", axios); // ✅ Debugging Axios import
+console.log("Axios in climateTraceAPI:", axios); 
 
 const BASE_URL = 'https://api.climatetrace.org/v6';
 
@@ -287,5 +287,3 @@ const countryCodeMap = {
 export const getCountryCode = (countryName) => {
     return countryCodeMap[countryName] || null;
   };
-
-// module.exports = { fetchEmissionsData, getCountryCode };

@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import { fetchEmissionsData, getCountryCode } from "./api/climateTraceAPI";
 import { countries } from "./data/countries";
-
-const axios = require('axios').default;
-console.log("Axios in App.js:", axios);
+const sortedCountries = [...countries].sort();
 
 
 function App() {
@@ -90,7 +88,7 @@ function App() {
             onChange={(e) => setSelectedCountry(e.target.value)}
           >
             <option value="">Select a country</option>
-            {Array.isArray(countries) && countries.map((country, index) => (
+            {Array.isArray(sortedCountries) && sortedCountries.map((country, index) => (
               <option key={index} value={country}>{country}</option>
             ))}
           </select>
