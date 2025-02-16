@@ -44,7 +44,7 @@ function App() {
       return;
     }
   
-    const countryEmissions = emissionsData[0]; // Assuming API returns an array
+    const countryEmissions = emissionsData[0];
     console.log("Country emissions data:", countryEmissions);
   
     // Select a random gas type (CO2, CH4, N2O)
